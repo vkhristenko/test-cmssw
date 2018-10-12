@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jube>
+    <benchmark name="hello_world" outpath="bench_run">
+        <comment>a simple hello world benchmark</comment>
+
+        <!-- configuration -->
+        <parameterset name="hello_parameter">
+            <parameter name="source_dir">/homeb/zam/vkhriste/soft/test-cmssw/jube/hello_world</parameter>
+        </parameterset>
+
+        <!-- what to run -->
+        <step name="compile_hello_world">
+            <use>hello_parameter</use>
+            <do>g++ -o $source_dir/hello_world $source_dir/hello_world.cpp</do>
+        </step>
+        <step name="run_hello_world" depend="compile_hello_world">
+            <use>hello_parameter</use>
+            <do>$source_dir/hello_world</do> <!-- run a shell cmd -->
+        </step>
+    </benchmark>
+</jube>
