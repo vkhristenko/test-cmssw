@@ -18,13 +18,13 @@ echo "running cmssw reco job with $SLURM_NTASKS processes(tasks)/node each with 
 LAUNCHER=/homeb/zam/vkhriste/soft/test-cmssw/slurm/workflow_136.837_step3only_noDQM.sh
 CMSSOFT=/cvmfs/cms.cern.ch/
 CMSCONFIG=/homeb/zam/vkhriste/config
-CMSSWRELEASE=/homeb/zam/vkhriste/soft/test-cmssw/jube/cmssw_reco/bench_cmssw/000003/CMSSW_10_0_0/src
+CMSSWRELEASE=#CMSSWRELEASE_TO_REPLACE#
 INPUTDATA=filelist:/gpfs-work/zam/vkhriste/data/ZeroBias/Run2017F-v1/RAW/filelist.txt
-OUTPUTDIR=/gpfs-work/zam/vkhriste/data/ZeroBias/Run2017F-v1/OUTPUT_RECO
-LOGDIR=~/logs
+OUTPUTDIR=#OUTPUT_DIR_TO_REPLACE#
+LOGDIR=#LOGDIR_TO_REPLACE#
 ATTEMPT=0
 NTHREADS=8
-EVENTSTOTAL=10
+EVENTSTOTAL=#EVENTSTOTAL_TO_REPLACE#
 
 srun\
     $LAUNCHER\
@@ -39,3 +39,4 @@ srun\
     $EVENTSTOTAL
 
 echo "job is finished"
+touch #FINISHED#
