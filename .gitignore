@@ -33,3 +33,7 @@
 
 # 
 *.nfs*
+
+# various jube files
+bench_*/
+*.log

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jube>
+    <benchmark name="cmssw_reco" outpath="bench_cmssw">
+        <comment>a simple CMSSW Reconstruction benchmark</comment>
+
+        <!-- configuration -->
+        <parameterset name="setup_parameters">
+            <parameter name="scripts_dir">/homeb/zam/vkhriste/soft/test-cmssw/jube/cmssw_reco</parameter>
+        </parameterset>
+
+        <!-- what to run -->
+        <step name="setup_cmssw_reco">
+            <use>setup_parameters</use>
+            <do>/bin/bash $scripts_dir/setup.sh $jube_benchmark_rundir</do>
+        </step>
+        <step name="run_cmssw_reco" depend="setup_cmssw_reco">
+            <use>setup_parameters</use>
+            <do>touch some_empty_file.txt</do>
+            <!---            <do>sbatch $scripts_dir/workflow_136.837_step3only_noDQM.sh </do> -->
+                 <!-- run a shell cmd -->
+        </step>
+    </benchmark>
+</jube>
