@@ -7,7 +7,7 @@
         <parameterset name="setup_parameters">
             <parameter name="slurm_scripts_dir">/homeb/zam/vkhriste/soft/test-cmssw/slurm</parameter>
             <parameter name="setup_scripts_dir">/homeb/zam/vkhriste/soft/test-cmssw/jube/cmssw_reco</parameter>
-            <parameter name="nevents">10</parameter>
+            <parameter name="nevents">100</parameter>
             <parameter name="cmssw_release">CMSSW_10_0_0</parameter>
             <parameter name="finished_file">job_finished</parameter>
         </parameterset>
