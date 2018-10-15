@@ -11,11 +11,11 @@
         <!-- what to run -->
         <step name="compile_hello_world">
             <use>hello_parameter</use>
-            <do>g++ -o $source_dir/hello_world $source_dir/hello_world.cpp</do>
+            <do>g++ -o $jube_benchmark_rundir/hello_world $source_dir/hello_world.cpp</do>
         </step>
         <step name="run_hello_world" depend="compile_hello_world">
             <use>hello_parameter</use>
-            <do>$source_dir/hello_world</do> <!-- run a shell cmd -->
+            <do>$jube_benchmark_rundir/hello_world</do> <!-- run a shell cmd -->
         </step>
     </benchmark>
 </jube>
