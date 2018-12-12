@@ -28,6 +28,8 @@
 #include "FWCore/Framework/interface/MakerMacros.h"
 
 #include "FWCore/ParameterSet/interface/ParameterSet.h"
+
+#include "DataFormats/PatCandidates/interface/Muon.h"
 //
 // class declaration
 //
@@ -71,6 +73,10 @@ TestAnalyzer::TestAnalyzer(const edm::ParameterSet& iConfig)
    //now do what ever initialization is needed
    usesResource("TFileService");
 
+   _tagMuons = ps.getUntrackedParameter<edm::InputTag>(
+        "tagMuons");
+   _tokMuons = consumes<pat::MuonCollection>(
+        _tagMuons);
 }
 
 
