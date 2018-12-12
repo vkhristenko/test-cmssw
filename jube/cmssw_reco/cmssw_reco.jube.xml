@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jube>
+    <benchmark name="cmssw_reco" outpath="bench_cmssw">
+        <comment>a simple CMSSW Reconstruction benchmark</comment>
+
+        <!-- configuration: all common preset paths are global at jsc -->
+        <parameterset name="setup_parameters">
+            <parameter name="slurm_scripts_dir">/homeb/zam/vkhriste/soft/test-cmssw/slurm</parameter>
+            <parameter name="setup_scripts_dir">/homeb/zam/vkhriste/soft/test-cmssw/jube/cmssw_reco</parameter>
+            <parameter name="nevents">100</parameter>
+            <parameter name="cmssw_release">CMSSW_10_0_0</parameter>
+            <parameter name="finished_file">job_finished</parameter>
+        </parameterset>
+
+        <!-- slurm batch job file template -->
+        <fileset name="sbatch_template">
+            <copy>$slurm_scripts_dir/singlenode_jsc.sbatch.in</copy>
+        </fileset>
+
+        <!-- define what to substitute -->
+        <substituteset name="substitute">
+            <iofile in="singlenode_jsc.sbatch.in" out="singlenode_jsc.sbatch.sh"/>
+            <sub source="#CMSSWRELEASE_TO_REPLACE#" dest="${jube_benchmark_rundir}/${cmssw_release}/src" />
+            <sub source="#OUTPUT_DIR_TO_REPLACE#" dest="${jube_benchmark_rundir}/${cmssw_release}/src" />
+            <sub source="#LOGDIR_TO_REPLACE#" dest="${jube_benchmark_rundir}/${cmssw_release}/src" />
+            <sub source="#EVENTSTOTAL_TO_REPLACE#" dest="$nevents" />
+            <sub source="#FINISHED#" dest="$finished_file" />
+        </substituteset>
+
+        <!-- step 1: setup a relase -->
+        <step name="setup_cmssw_reco">
+            <use>setup_parameters</use>
+            <do>/bin/bash $setup_scripts_dir/setup.sh $jube_benchmark_rundir</do>
+        </step>
+        <!-- step 2: submit cmsRun jobs to the slurm batch system -->
+        <step name="submit_cmssw_reco" depend="setup_cmssw_reco">
+            <use>setup_parameters</use>
+            <use>sbatch_template</use>
+            <use>substitute</use>
+            <do done_file="$finished_file">sbatch singlenode_jsc.sbatch.sh</do>
+        </step>
+    </benchmark>
+</jube>
