@@ -19,6 +19,7 @@
 
 // system include files
 #include <memory>
+#include <iostream>
 
 // user include files
 #include "FWCore/Framework/interface/Frameworkfwd.h"
@@ -54,6 +55,8 @@ class TestAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
       virtual void endJob() override;
 
       // ----------member data ---------------------------
+      edm::InputTag _tagMuons;
+      edm::EDGetTokenT<pat::MuonCollection> _tokMuons;
 };
 
 //
@@ -67,7 +70,7 @@ class TestAnalyzer : public edm::one::EDAnalyzer<edm::one::SharedResources>  {
 //
 // constructors and destructor
 //
-TestAnalyzer::TestAnalyzer(const edm::ParameterSet& iConfig)
+TestAnalyzer::TestAnalyzer(const edm::ParameterSet& ps)
 
 {
    //now do what ever initialization is needed
@@ -93,23 +96,25 @@ TestAnalyzer::~TestAnalyzer()
 // member functions
 //
 
+#define print(expr)\
+    std::cout << ""#expr " = " << expr << std::endl
+
 // ------------ method called for each event  ------------
 void
-TestAnalyzer::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
+TestAnalyzer::analyze(const edm::Event& event, const edm::EventSetup& iSetup)
 {
    using namespace edm;
 
+  // extract the collection
+  edm::Handle<pat::MuonCollection> hMuons;
+  event.getByToken(_tokMuons, hMuons);
 
-
-#ifdef THIS_IS_AN_EVENT_EXAMPLE
-   Handle<ExampleData> pIn;
-   iEvent.getByLabel("example",pIn);
-#endif
-   
-#ifdef THIS_IS_AN_EVENTSETUP_EXAMPLE
-   ESHandle<SetupData> pSetup;
-   iSetup.get<SetupRecord>().get(pSetup);
-#endif
+  // loop over all the muons
+  for (pat::MuonCollection::const_iterator it=hMuons->begin();
+    it!=hMuons->end(); ++it) {
+    auto muon = *it;
+    print(muon.pt());
+  }
 }
 
 

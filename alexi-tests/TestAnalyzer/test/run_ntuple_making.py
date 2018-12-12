@@ -17,7 +17,7 @@ process.GlobalTag.globaltag = "80X_mcRun2_asymptotic_2016_TrancheIV_v6"
 # specify which files
 process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 process.source = cms.Source("PoolSource",
-    fileNames = cms.untracked.vstring(["/store/mc/RunIISummer16MiniAODv2/ggXToYYTo4Mu_m18_scalar_13TeV-pythia8-JHUGen/MINIAODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/60000/30AE7E5B-96BC-E811-BC66-6C3BE5B533A8.root"])
+    fileNames = cms.untracked.vstring(["/store/mc/RunIISummer16DR80Premix/ggXToYYTo4Mu_m18_scalar_13TeV-pythia8-JHUGen/AODSIM/PUMoriond17_80X_mcRun2_asymptotic_2016_TrancheIV_v6-v1/60000/728BF563-89BC-E811-92A7-001F2908BE52.root"])
 )
 
 # this is for output, kinda a TFile helper...
@@ -26,9 +26,7 @@ process.TFileService = cms.Service("TFileService",
 
 # cmssw is a plug/play system -> load dynamic shared objects 
 # at runtime -> therefore we must specify all the objects (.so) to load and use
-process.test_analyzer = cms.EDAnalyzer("TestAnalyzer",
-    tagMuons = cms.untracked.InputTag("slimmedMuons")
-)
+process.test_analyzer = cms.EDAnalyzer("TestAnalyzer")
 
 # data processsing workflow to perform -> here only our analyzer
 process.p = cms.Path(process.test_analyzer)
