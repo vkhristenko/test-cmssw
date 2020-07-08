@@ -9,6 +9,8 @@ export SCRAM_ARCH=slc7_amd64_gcc820
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 # we will work in some tmp dir
+[ -d "$WORKDIR" ] && rm $WORKDIR
+mkdir $WORKDIR
 cd $WORKDIR
 
 # check out a release
@@ -18,7 +20,7 @@ eval `scramv1 runtime -sh`
 git cms-init -x cms-patatrack
 
 # bring the current release branch up to the head
-git checkout cms-patatrack/CMSSW_11_1_X_Patatrack
+git checkout CMSSW_11_1_X_Patatrack
 git diff $CMSSW_VERSION --name-only --no-renames | cut -d/ -f-2 | sort -u | xargs -r git cms-addpkg
 git cms-checkdeps -a
 
