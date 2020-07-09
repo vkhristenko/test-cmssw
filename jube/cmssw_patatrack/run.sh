@@ -28,7 +28,7 @@ do
     #echo "$counter --> $line"
     if [ $counter -eq 15 ]
     then
-        echo $line # __ THIS GUY PRINTS AN AVERAGE THROUGHPUT OF 4 RUNS __
+        echo "average throughput = $line" # __ THIS GUY PRINTS AN AVERAGE THROUGHPUT OF 4 RUNS __
     fi
     counter=$((counter+1))
 done < "$input"
