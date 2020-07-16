@@ -9,7 +9,7 @@ export SCRAM_ARCH=slc7_amd64_gcc820
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 
 # we will work in some tmp dir
-[ -d "$WORKDIR" ] && rm $WORKDIR
+[ -d "$WORKDIR" ] && rm -rf $WORKDIR
 mkdir $WORKDIR
 cd $WORKDIR
 
