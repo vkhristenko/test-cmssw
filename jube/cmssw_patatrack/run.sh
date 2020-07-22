@@ -18,7 +18,7 @@ eval `scramv1 runtime -sh`
 
 # run
 echo "running in $WORKDIR with $NUM_CORES cores per process"
-LD_PRELOAD=/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/cuda/10.2.89-bcolbf2/drivers/libcuda.so.440.33.01:/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/cuda/10.2.89-bcolbf2/drivers/libnvidia-ptxjitcompiler.so.440.33.01 /p/project/cdeep/khristenko1/patatrack-scripts/benchmark $CFG $NUM_CORES > results.log 2>&1
+LD_PRELOAD=/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/cuda/11.0.1/drivers/libcuda.so.450.36.06:/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/cuda/11.0.1/drivers/libnvidia-ptxjitcompiler.so.450.36.06 /p/project/cdeep/khristenko1/patatrack-scripts/benchmark $CFG $NUM_CORES > results.log 2>&1
 
 # parse the logs to get average throughput
 input="results.log"
@@ -34,4 +34,6 @@ do
 done < "$input"
 
 # print the rest of the log
+echo ">>> full log"
 cat $input
+echo "<<< full log"
