@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "PYTHONPATH = $PYTHONPATH"
+
 # 
 WORKDIR=$1
 NUM_CORES=$2
@@ -25,5 +27,9 @@ git checkout CMSSW_11_1_X_Patatrack
 git diff $CMSSW_VERSION --name-only --no-renames | cut -d/ -f-2 | sort -u | xargs -r git cms-addpkg
 git cms-checkdeps -a
 
+echo "PYTHONPATH = $PYTHONPATH"
+
 # build
 scram b -v -j $NUM_CORES
+
+echo "PYTHONPATH = $PYTHONPATH"
