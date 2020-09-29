@@ -1,0 +1,12 @@
+#!/bin/bash
+
+TYPE=$1
+WORKDIR=$2
+RELEASEDIR=$3
+NUM_JOBS=$4
+NUM_CORES=$5
+
+myhost="`hostname`"
+WORKDIR_FULL="$WORKDIR/$myhost"
+
+./run_${TYPE}.sh $WORKDIR_FULL $RELEASEDIR $NUM_JOBS $NUM_CORES
