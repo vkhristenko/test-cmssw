@@ -3,7 +3,7 @@
 # 
 WORKDIR=$1
 NUM_CORES=$2
-RELEASE=CMSSW_11_1_0_Patatrack
+RELEASE=CMSSW_11_1_3_Patatrack
 CFG=/p/project/cdeep/khristenko1/cmsrun_configs/hcal/gpu.py
 export SCRAM_ARCH=slc7_amd64_gcc820
 
