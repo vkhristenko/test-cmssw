@@ -8,7 +8,7 @@
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=16
 #SBATCH --time=01:00:00
-#SBATCH --output=/p/home/jusers/khristenko1/deep/logs/cmssw_patatrack_setup_%j.log
+#SBATCH --output=/p/project/cdeep/khristenko1/logs/%j.log
 
 WORKDIR=$1
 NUM_CORES=$2
